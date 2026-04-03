@@ -1,0 +1,25 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@layer base {
+  body {
+    @apply bg-white text-black font-sans m-0 p-0;
+    transition-property: background-color, color, border-color;
+    transition-duration: 500ms;
+    transition-timing-function: ease-in-out;
+  }
+}
+@layer utilities {
+  .figma-container {
+    max-width: 1536px;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "findStore": "Do'konni topish",
+    "help": "Yordam",
+    "joinUs": "Qo'shiling",
+    "signIn": "Kirish",
+    "new": "Yangi & Tanlanganlar",
+    "men": "Erkaklar",
+    "women": "Ayollar",
+    "kids": "Bolalar",
+    "sale": "Chegirma",
+    "snkrs": "SNKRS",
+    "search": "Qidirish"
+  },
+  "hero": {
+    "hello": "Salom, Nike ilovasi",
+    "download": "Nike-ning barcha yangiliklariga kirish uchun ilovani yuklab oling.",
+    "title": "NIKE AIR FORCE 1",
+    "subtitle": "NIKE AIR FORCE 1",
+    "description": "Nike Air Force 1 ning klassik qulayligi va abadiy uslubini his eting.",
+    "cta": "Sotib olish"
+  },
+  "home": {
+    "bestOf": "Air Max-ning eng sarasi",
+    "gearUp": "Tayyorgarlik",
+    "dontMiss": "O'tkazib yubormang",
+    "featured": "Tanlangan",
+    "essentials": "Eng asosiylari",
+    "shop": "Do'kon",
+    "shopMens": "Erkaklar uchun",
+    "shopWomens": "Ayollar uchun"
+  },
+  "admin": {
+    "dashboard": "Admin paneli",
+    "products": "Mahsulotlar",
+    "orders": "Buyurtmalar",
+    "logout": "Chiqish",
+    "login": "Kirish"
+  },
+  "product": {
+    "subtotal": "Jami",
+    "delivery": "Taxminiy yetkazib berish",
+    "free": "Bepul",
+    "total": "Umumiy",
+    "checkout": "Sotib olish",
+    "addToBag": "Savatga qo'shish",
+    "favourite": "Sevimlilar",
+    "selectSize": "O'lchamni tanlang",
+    "sizeGuide": "O'lchamlar jadvali",
+    "color": "Rang",
+    "style": "Artikul",
+    "sustainable": "Ekologik mahsulot",
+    "favourites": "Sevimlilar",
+    "emptyFavourites": "Sevimlilar ro'yxatida hech narsa yo'q.",
+    "youMightLike": "Sizga yoqishi mumkin",
+    "ordered": "Buyurtmangiz qabul qilindi! ✓"
+  },
+  "cart": {
+    "title": "Savat",
+    "empty": "Savatingizda hali hech narsa yo'q.",
+    "shopNow": "Xarid qilish"
+  },
+  "summary": {
+    "title": "Buyurtmani rasmiylashtirish",
+    "subtotal": "Subtotal",
+    "delivery": "Yetkazib berish",
+    "free": "Bepul",
+    "total": "Jami",
+    "checkout": "Sotib olish"
+  },
+  "loading": "Yuklanmoqda..."
+}

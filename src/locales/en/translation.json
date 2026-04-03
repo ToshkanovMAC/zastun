@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "findStore": "Find a Store",
+    "help": "Help",
+    "joinUs": "Join Us",
+    "signIn": "Sign In",
+    "new": "New & Featured",
+    "men": "Men",
+    "women": "Women",
+    "kids": "Kids",
+    "sale": "Sale",
+    "snkrs": "SNKRS",
+    "search": "Search"
+  },
+  "hero": {
+    "hello": "Hello Nike App",
+    "download": "Download the app to access everything Nike. Get Your Great",
+    "title": "NIKE AIR FORCE 1",
+    "subtitle": "NIKE AIR FORCE 1",
+    "description": "Experience the classic comfort and timeless style of the Nike Air Force 1. The perfect pair for any occasion.",
+    "cta": "Shop Now"
+  },
+  "home": {
+    "bestOf": "Best of Air Max",
+    "gearUp": "Gear Up",
+    "dontMiss": "Don't Miss",
+    "featured": "Featured",
+    "essentials": "The Essentials",
+    "shop": "Shop",
+    "shopMens": "Shop Men's",
+    "shopWomens": "Shop Women's"
+  },
+  "admin": {
+    "dashboard": "Admin Dashboard",
+    "products": "Products",
+    "orders": "Orders",
+    "logout": "Logout",
+    "login": "Login"
+  },
+  "product": {
+    "subtotal": "Subtotal",
+    "delivery": "Estimated Delivery & Handling",
+    "free": "Free",
+    "total": "Total",
+    "checkout": "Member Checkout",
+    "addToBag": "Add to Bag",
+    "favourite": "Favourite",
+    "selectSize": "Select Size",
+    "sizeGuide": "Size Guide",
+    "color": "Color",
+    "style": "Style",
+    "sustainable": "Sustainable Materials",
+    "favourites": "Favourites",
+    "emptyFavourites": "There are no items saved to your favourites.",
+    "youMightLike": "You Might Also Like",
+    "ordered": "Order Placed! ✓"
+  },
+  "cart": {
+    "title": "Bag",
+    "empty": "There are no items in your bag.",
+    "shopNow": "Shop Now"
+  },
+  "summary": {
+    "title": "Summary",
+    "subtotal": "Subtotal",
+    "delivery": "Estimated Delivery & Handling",
+    "free": "Free",
+    "total": "Total",
+    "checkout": "Member Checkout"
+  },
+  "loading": "Loading..."
+}
