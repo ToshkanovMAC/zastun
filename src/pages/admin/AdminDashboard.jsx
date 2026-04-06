@@ -10,9 +10,11 @@ import {
   Legend,
   ArcElement,
   LineElement,
-  PointElement
+  PointElement,
+  RadialLinearScale,
+  Filler
 } from 'chart.js';
-import { Bar, Pie, Line, Doughnut } from 'react-chartjs-2';
+import { Bar, Pie, Line, Doughnut, Radar, PolarArea, Bubble } from 'react-chartjs-2';
 import api from '../../api/axios';
 import { Package, ShoppingBag, DollarSign } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -26,7 +28,9 @@ ChartJS.register(
   Legend,
   ArcElement,
   LineElement,
-  PointElement
+  PointElement,
+  RadialLinearScale,
+  Filler
 );
 
 // Custom plugins to give charts a unique look (canvas background color/image + glow)
@@ -205,6 +209,76 @@ const AdminDashboard = () => {
     };
   }, [products]);
 
+  const categoryStockData = useMemo(() => {
+    const categories = [...new Set(products.map(p => p.category))];
+    const stockLevels = categories.map(cat => {
+      return products
+        .filter(p => p.category === cat)
+        .reduce((sum, p) => sum + (p.stock || 0), 0);
+    });
+
+    return {
+      labels: categories,
+      datasets: [
+        {
+          label: 'Stock Level by Category',
+          data: stockLevels,
+          backgroundColor: 'rgba(34, 197, 94, 0.2)',
+          borderColor: 'rgb(34, 197, 94)',
+          borderWidth: 2,
+          pointBackgroundColor: 'rgb(34, 197, 94)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgb(34, 197, 94)',
+        },
+      ],
+    };
+  }, [products]);
+
+  const averagePriceByCategoryData = useMemo(() => {
+    const categories = [...new Set(products.map(p => p.category))];
+    const avgPrices = categories.map(cat => {
+      const catProducts = products.filter(p => p.category === cat);
+      const sum = catProducts.reduce((s, p) => s + (p.price || 0), 0);
+      return catProducts.length > 0 ? (sum / catProducts.length).toFixed(2) : 0;
+    });
+
+    return {
+      labels: categories,
+      datasets: [
+        {
+          label: 'Avg Price ($)',
+          data: avgPrices,
+          backgroundColor: [
+            'rgba(249, 115, 22, 0.7)',
+            'rgba(34, 197, 94, 0.7)',
+            'rgba(59, 130, 246, 0.7)',
+            'rgba(168, 162, 158, 0.7)',
+            'rgba(239, 68, 68, 0.7)',
+          ],
+          borderWidth: 0,
+        },
+      ],
+    };
+  }, [products]);
+
+  const productBubbleData = useMemo(() => {
+    return {
+      datasets: [
+        {
+          label: 'Price vs Stock (Bubble)',
+          data: products.map(p => ({
+            x: p.price || 0,
+            y: p.stock || 0,
+            r: Math.min((p.stock || 0) / 2, 20) // bubble size based on stock
+          })),
+          backgroundColor: 'rgba(59, 130, 246, 0.5)',
+          borderColor: 'rgb(59, 130, 246)',
+        },
+      ],
+    };
+  }, [products]);
+
   if (loadingProducts || loadingOrders) {
     return (
       <div className="flex h-64 items-center justify-center">
@@ -355,6 +429,93 @@ const AdminDashboard = () => {
                />
              ) : (
                <p className="text-gray-500">No products available</p>
+             )}
+          </div>
+        </div>
+
+        <div className="bg-white dark:bg-black p-6 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 dark:border-gray-800">
+          <h3 className="text-lg font-bold mb-6 dark:text-white">Stock Analysis (Radar)</h3>
+          <div className="h-72 flex items-center justify-center">
+             {products.length > 0 ? (
+               <Radar 
+                 data={categoryStockData} 
+                 options={{ 
+                   responsive: true, 
+                   maintainAspectRatio: false,
+                   plugins: {
+                     legend: { display: false },
+                     ...chartPluginsConfig
+                   },
+                   scales: {
+                     r: {
+                       angleLines: { color: 'rgba(0,0,0,0.05)' },
+                       grid: { color: 'rgba(0,0,0,0.05)' },
+                       pointLabels: { font: { size: 10 } },
+                       ticks: { display: false }
+                     }
+                   }
+                 }} 
+               />
+             ) : (
+               <p className="text-gray-500">No data available</p>
+             )}
+          </div>
+        </div>
+
+        <div className="bg-white dark:bg-black p-6 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 dark:border-gray-800">
+          <h3 className="text-lg font-bold mb-6 dark:text-white">Price Distribution (Polar Area)</h3>
+          <div className="h-72 flex items-center justify-center">
+             {products.length > 0 ? (
+               <PolarArea 
+                 data={averagePriceByCategoryData} 
+                 options={{ 
+                   responsive: true, 
+                   maintainAspectRatio: false,
+                   plugins: {
+                     legend: { position: 'right' },
+                     ...chartPluginsConfig
+                   },
+                   scales: {
+                     r: {
+                       grid: { color: 'rgba(0,0,0,0.05)' },
+                       ticks: { display: false }
+                     }
+                   }
+                 }} 
+               />
+             ) : (
+               <p className="text-gray-500">No data available</p>
+             )}
+          </div>
+        </div>
+        <div className="bg-white dark:bg-black p-6 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 dark:border-gray-800">
+          <h3 className="text-lg font-bold mb-6 dark:text-white">Price vs Stock (Bubble)</h3>
+          <div className="h-72 flex items-center justify-center">
+             {products.length > 0 ? (
+               <Bubble 
+                 data={productBubbleData} 
+                 options={{ 
+                   responsive: true, 
+                   maintainAspectRatio: false,
+                   plugins: {
+                     legend: { display: false },
+                     ...chartPluginsConfig
+                   },
+                   scales: {
+                     y: { 
+                       title: { display: true, text: 'Stock' },
+                       beginAtZero: true, 
+                       grid: { color: 'rgba(0,0,0,0.05)' } 
+                     },
+                     x: { 
+                       title: { display: true, text: 'Price ($)' },
+                       grid: { color: 'rgba(0,0,0,0.05)' } 
+                     }
+                   }
+                 }} 
+               />
+             ) : (
+               <p className="text-gray-500">No data available</p>
              )}
           </div>
         </div>
